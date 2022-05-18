@@ -1,0 +1,35 @@
+{
+	"name": "ifunny-discord-bot",
+	"version": "1.0.0",
+	"description": "Discord bot with iFunny integration",
+	"main": "dist/index.ts",
+	"types": "types",
+	"scripts": {
+		"test": "jest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/MakeShiftArtist/ifunny-discord-bot.git"
+	},
+	"keywords": [
+		"Discord",
+		"iFunny",
+		"Bot",
+		"Framework"
+	],
+	"author": "",
+	"license": "GPL-3.0-or-later",
+	"bugs": {
+		"url": "https://github.com/MakeShiftArtist/ifunny-discord-bot/issues"
+	},
+	"homepage": "https://github.com/MakeShiftArtist/ifunny-discord-bot#readme",
+	"devDependencies": {
+		"@types/node": "^17.0.33",
+		"typescript": "^4.6.4"
+	},
+	"dependencies": {
+		"discord.js": "^13.7.0",
+		"dotenv": "^16.0.1",
+		"tslog": "^3.3.3"
+	}
+}
