@@ -1,0 +1,15 @@
+{
+	"include": ["./src/**/*"],
+	"compilerOptions": {
+		"target": "ES2015",
+		"moduleResolution": "node",
+		"module": "commonjs",
+		"outDir": "./dist",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"declaration": true,
+		"declarationDir": "./types",
+		"sourceMap": true
+	}
+}
