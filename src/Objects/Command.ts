@@ -20,8 +20,8 @@ export interface CommandConfig {
 }
 
 export type CommandCallback = (
-	interaction: CommandInteraction,
-	client: Client
+	client: Client,
+	interaction: CommandInteraction
 ) => Promise<void> | void;
 
 /**

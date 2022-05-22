@@ -3,7 +3,7 @@ import Command from "../Objects/Command";
 export default new Command(
 	"ping",
 	"Pings the bot and receives response time",
-	async (interaction, client) => {
+	async (client, interaction) => {
 		const embed = client.util
 			.embed()
 			.setTitle("Pong!")
