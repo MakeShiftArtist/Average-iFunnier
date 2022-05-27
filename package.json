@@ -1,6 +1,6 @@
 {
 	"name": "average-ifunnier",
-	"version": "2.0.4",
+	"version": "2.0.5",
 	"description": "Discord bot with iFunny integration",
 	"main": "dist/index.ts",
 	"types": "types",
