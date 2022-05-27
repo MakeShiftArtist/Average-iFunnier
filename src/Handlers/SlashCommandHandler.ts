@@ -206,7 +206,7 @@ export class SlashCommandHandler {
 			) {
 				this.client.logger.debug(`${await this.client.owner()}`);
 				const embed = this.client.util.errorEmbed(
-					new ClientError(this.client, { interaction }).message
+					"You must be a bot owner to use this command"
 				);
 				await interaction.reply({
 					embeds: [embed],
@@ -222,9 +222,8 @@ export class SlashCommandHandler {
 			command.ownerOnly &&
 			interaction.user.id !== (await this.client.owner())?.id
 		) {
-			const error = new ClientError(this.client, {
-				interaction,
-				message: "Owner Only Command",
+			const error = new ClientError(this.client, interaction, {
+				message: "You must be a bot owner to use this command",
 			});
 			const embed = this.client.util
 				.errorEmbed(error.message)
