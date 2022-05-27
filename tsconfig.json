@@ -9,7 +9,6 @@
 		"allowSyntheticDefaultImports": true,
 		"strict": true,
 		"declaration": true,
-		"declarationDir": "./types",
 		"sourceMap": true,
 		"resolveJsonModule": true,
 		"baseUrl": "./",
