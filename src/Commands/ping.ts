@@ -1,16 +1,24 @@
+import Client from "@Client";
 import Command from "../Objects/Command";
+import { CommandInteraction } from "discord.js";
 
-export default new Command(
-	"ping",
-	"Pings the bot and receives response time",
-	async (client, interaction) => {
+export class Ping extends Command {
+	constructor(client: Client) {
+		super(
+			client,
+			"ping",
+			"Returns the bot's response time and the websocket latency"
+		);
+	}
+
+	async execute(client: Client, interaction: CommandInteraction) {
 		const embed = client.util
 			.embed()
 			.setTitle("Pong!")
 			.setColor("YELLOW")
 			.setTimestamp();
 
-		await interaction.reply({ embeds: [embed] });
+		await interaction.reply({ embeds: [embed], fetchReply: true });
 		if (interaction.inCachedGuild()) {
 			const msg = await interaction.fetchReply();
 			embed.setDescription(
@@ -22,8 +30,7 @@ export default new Command(
 			return;
 		}
 		client.logger.warn("Ping failed due to channel not being cached", interaction);
-	},
-	{
-		devOnly: true,
 	}
-);
+}
+
+export default Ping;
