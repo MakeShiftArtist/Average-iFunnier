@@ -2,6 +2,39 @@
 > All notable changes to this project will be documented in this file.
 > This Changelog adheres to the [Semantic Versioning]("https://semver.org/")
 
+## [v2.0.6](https://github.com/MakeShiftArtist/ifunny-discord-bot/compare/v2.0.6...v2.0.6) - 2022-05-27
+
+
+### Fixes
+
+*  changelog commit message @MakeShiftArtist ([`00dc43a`](https://github.com/MakeShiftArtist/ifunny-discord-bot/commit/00dc43a18fb44df7744512335ba5081cb913be85))
+
+
+
+
+## [v2.0.6](https://github.com/MakeShiftArtist/ifunny-discord-bot/compare/v2.0.5...v2.0.6) - 2022-05-27
+
+
+### Fixes
+
+*  auto-changelog commit automatically @MakeShiftArtist ([`10633f6`](https://github.com/MakeShiftArtist/ifunny-discord-bot/commit/10633f656d4dc17d1260f21dc49904d53cb0325a))
+
+
+
+
+## [v2.0.5](https://github.com/MakeShiftArtist/ifunny-discord-bot/compare/v2.0.4...v2.0.5) - 2022-05-27
+
+
+### Fixes
+
+*  Updated package name, fix tests @MakeShiftArtist ([`99e10f2`](https://github.com/MakeShiftArtist/ifunny-discord-bot/commit/99e10f2f2752ae70c6283021cee5ec4834b02ca4))
+
+
+### Documentation
+
+*  Updated CHANGELOG.md @MakeShiftArtist ([`8c2442b`](https://github.com/MakeShiftArtist/ifunny-discord-bot/commit/8c2442bfe071c56979fc94f92682edada3191617))
+
+
 ## [v2.0.4](https://github.com/MakeShiftArtist/ifunny-discord-bot/compare/v2.0.3...v2.0.4) - 2022-05-27
 
 
