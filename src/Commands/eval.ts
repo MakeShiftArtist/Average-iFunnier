@@ -43,7 +43,7 @@ export class Eval extends Command {
 
 		// Remove token from code
 		const regex = new RegExp(
-			`${client.token}|TOKEN|process\.env|client\.token|child_process|regex`,
+			`${client.token}|TOKEN|process.env|client.token|child_process|regex`,
 			"i"
 		);
 		if (regex.test(code)) {
