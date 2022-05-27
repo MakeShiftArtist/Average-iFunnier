@@ -19,51 +19,46 @@ export interface CommandConfig {
 	botPerms?: Permissions;
 }
 
-export type CommandCallback = (
-	client: Client,
-	interaction: CommandInteraction
-) => Promise<void> | void;
-
 /**
  * Represents a Command for the bot
  */
-export class Command {
+export abstract class Command {
 	/**
 	 * The name of the command. Required on initialization
 	 */
-	public readonly name: string;
+	public name: string;
 	/**
 	 * Command description
 	 */
-	public readonly description: string;
+	public description: string;
 	/**
 	 * What category does the command belong to?
 	 */
-	public readonly category: string | null;
+	public category: string | null;
 	/**
 	 * Is the command for the support server only?
 	 */
-	public readonly supportOnly: boolean;
+	public supportOnly: boolean;
 	/**
 	 * Is the command for developers only?
 	 */
-	public readonly devOnly: boolean;
+	public devOnly: boolean;
 	/**
 	 * Is the command for the Bot Owner only
 	 */
-	public readonly ownerOnly: boolean;
+	public ownerOnly: boolean;
 	/**
 	 * Is the command for Admins only?
 	 */
-	public readonly adminsOnly: boolean;
+	public adminsOnly: boolean;
 	/**
 	 * Does the command have a cooldown?
 	 */
-	public readonly hasCooldown: boolean;
+	public hasCooldown: boolean;
 	/**
 	 * How long is the command cooldown?
 	 */
-	public readonly cooldownDuration: number;
+	public cooldownDuration: number;
 	/**
 	 * Should the command be hidden from the help menu?
 	 */
@@ -75,27 +70,24 @@ export class Command {
 	/**
 	 * What permissions does the member need to run this command?
 	 */
-	public readonly memberPerms: Permissions;
+	public memberPerms: Permissions;
 	/**
 	 * What permissions does the bot need to run this command?
 	 */
-	public readonly botPerms: Permissions;
+	public botPerms: Permissions;
 
 	protected _slash_command: SlashCommandBuilder | null;
 
-	protected _callback: CommandCallback;
-
 	constructor(
+		public readonly client: Client,
 		name: string,
 		description: string,
-		callback: CommandCallback,
 		config?: CommandConfig
 	) {
 		if (!name) throw new Error("Command initialized without a name");
 		this.name = name;
 		if (!description) throw new Error("Command initialized without a description");
 		this.description = description;
-		this._callback = callback;
 		this.category = config?.category ?? null;
 		this.adminsOnly = config?.adminsOnly ?? false;
 		this.devOnly = config?.devOnly ?? false;
@@ -130,7 +122,10 @@ export class Command {
 	 * Builds the command as a slash command object
 	 */
 	build(): SlashCommandBuilder {
-		const slash = Utility.slash().setName(this.name).setDescription(this.description);
+		const slash = new Utility(this.client)
+			.slash()
+			.setName(this.name)
+			.setDescription(this.description);
 		this._slash_command = slash;
 		return slash;
 	}
@@ -139,9 +134,7 @@ export class Command {
 		return this.slash.toJSON() as RESTPostAPIApplicationCommandsJSONBody;
 	}
 
-	async execute(interaction: CommandInteraction, client: Client) {
-		return await this._callback(interaction, client);
-	}
+	abstract execute(client: Client, interaction: CommandInteraction): Promise<void>;
 }
 
 export default Command;
