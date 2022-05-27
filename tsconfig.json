@@ -10,6 +10,15 @@
 		"strict": true,
 		"declaration": true,
 		"declarationDir": "./types",
-		"sourceMap": true
+		"sourceMap": true,
+		"resolveJsonModule": true,
+		"baseUrl": "./",
+		"paths": {
+			"@root/*": ["./"],
+			"@Command": ["./src/Objects/Command"],
+			"@Client": ["./src/Objects/Client"],
+			"@errors/*": ["./src/Errors"],
+			"@src/*": ["./src"]
+		}
 	}
 }
