@@ -2,7 +2,30 @@
 > All notable changes to this project will be documented in this file.
 > This Changelog adheres to the [Semantic Versioning]("https://semver.org/")
 
-## 1.0.0 - 2022-05-27
+## [v2.0.1](https://github.com/MakeShiftArtist/ifunny-discord-bot/compare/v2.0.1...v2.0.1) - 2022-05-27
+
+### Features
+
+*  Added tests.yml workflow @MakeShiftArtist ([`2c09e92`](https://github.com/MakeShiftArtist/ifunny-discord-bot/commit/2c09e92aaca007e86c3d4a72fb16cdbbe84e4e0f))
+
+### Fixes
+
+*  Deleted eslint.yml workflow (not used) @MakeShiftArtist ([`05ad98d`](https://github.com/MakeShiftArtist/ifunny-discord-bot/commit/05ad98dee4c9682f2732157001b7e8e5857cf858))
+
+
+
+
+## [v2.0.1](https://github.com/MakeShiftArtist/ifunny-discord-bot/compare/v2.0.0...v2.0.1) - 2022-05-27
+
+
+### Fixes
+
+*  Removed useless backslashes @MakeShiftArtist ([`8e8e22e`](https://github.com/MakeShiftArtist/ifunny-discord-bot/commit/8e8e22e4f0eb225b1f3c701b6264dac52df8f147))
+
+
+
+
+## v2.0.0 - 2022-05-27
 
 ### Features
 
@@ -33,6 +56,7 @@
 
 ### Documentation
 
+*  Updated CHANGELOG.md @MakeShiftArtist ([`67ebe04`](https://github.com/MakeShiftArtist/ifunny-discord-bot/commit/67ebe04d30c619970c4d5bcd17397d493e983632))
 *  Added changelog-template.hbs @MakeShiftArtist ([`8e08f9c`](https://github.com/MakeShiftArtist/ifunny-discord-bot/commit/8e08f9cecdf4728c5cc774a44f24b018a1858f36))
 
 
