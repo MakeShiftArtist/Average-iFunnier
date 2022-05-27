@@ -7,7 +7,7 @@
 	"scripts": {
 		"test": "jest --passWithNoTests",
 		"start": "ts-node .\\index.ts",
-		"changelog": "auto-changelog -p  && git commit CHANGELOG.md -m Doc: Updated CHANGELOG.md",
+		"changelog": "auto-changelog -p  && git commit CHANGELOG.md -m 'Doc: Updated CHANGELOG.md'",
 		"changelog-debug": "auto-changelog -p --template json --output changelog-data.json",
 		"type": "tsc --declaration --emitDeclarationOnly --outFile index.d.ts",
 		"build": "npx tsc && npm run type"
