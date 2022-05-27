@@ -1,31 +1,39 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: "[BUG]"
+title: "[BUG REPORT]"
 labels: bug
 assignees: MakeShiftArtist
-
 ---
 
-## *Who* is the bug affecting?
-<!-- Ex. All supervisors, Sally Supervisor, Level 1 CCs -->
+### Prerequisites
 
-## *What* is affected by this bug?
-<!-- Ex. supervision, sending messages, texter profiles -->
+-   [ ] Have you attempted to debug the issue yourself?
+-   [ ] Can you reproduce the bug with steps?
+-   [ ] Are you running the latest version?
+-   [ ] Did you check [issues](https://github.com/MakeShiftArtist/averageifunnier/issues) to see if your bug has already been reported?
+-   [ ] Is your bug an issue with the source code of this project?
 
-## *When* does this occur?
-<!-- Ex. After ending a conversation, every night at 3pm, when I sign off -->
+### Description
 
-## *Where* on the platform does it happen?
-<!-- Ex. In the a Supervisor chat box, on the conversation profile page, on the two-factor screen -->
+<!--- A detailed description of the bug --->
 
+### Steps to Reproduce
 
-## *How* do we replicate the issue?
-<!-- Please be specific as possible. Use dashes (-) or numbers (1.) to create a list of steps -->
+<!---
+1. [First Step]
+2. [Second Step]
+3. [and so on...]
+--->
 
+### Expected/Desired behavior
 
-## Expected behavior (i.e. solution)
-<!-- What should have happened? -->
+<!--- What you expected to happen --->
 
+### Actual behavior
 
-## Other Comments
+<!--- What actually happened --->
+
+### Versions
+
+<!--- You can get this information from executing `npm version`. --->

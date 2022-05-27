@@ -4,34 +4,33 @@ about: Suggest an idea for this project
 title: "[FEATURE]"
 labels: enhancement
 assignees: MakeShiftArtist
-
 ---
 
-<!--- Provide a general summary of your changes in the Title above -->
+### Prerequisites
 
-## Description
-<!--- Describe your changes in detail -->
+-   [ ] Are you running the latest version?
+-   [ ] Have you checked documentation to see if your feature already exists
+-   [ ] Did you check [issues](https://github.com/MakeShiftArtist/averageifunnier/issues) to see if your feature has already been requested?
+-   [ ] Does your feature require changes to the documentation?
 
-## Motivation and Context
-<!--- Why is this change required? What problem does it solve? -->
-<!--- If it fixes an open issue, please link to the issue here. -->
+### Description
 
-## How has this been tested?
-<!--- Please describe in detail how you tested your changes. -->
-<!--- Include details of your testing environment, tests ran to see how -->
-<!--- your change affects other areas of the code, etc. -->
+<!--- A detailed description of the feature --->
 
-## Screenshots (if appropriate):
+### Suggested solution(s)
 
-## Types of changes
-<!--- What types of changes does your code introduce? Put an `x` in all the boxes that apply: -->
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+<!---
+How you would go about implementing this feature. If you don't have an idea, please remove this field
+--->
 
-## Checklist:
-<!--- Go over all the following points, and put an `x` in all the boxes that apply. -->
-<!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
-- [ ] My code follows the code style of this project.
-- [ ] My change requires a change to the documentation.
-- [ ] I have updated the documentation accordingly.
+### Desired behavior
+
+<!--- What you expect to happen --->
+
+### Current behavior
+
+<!--- What actually happens if applicable --->
+
+### Versions
+
+<!--- You can get this information from executing `npm version`. --->
