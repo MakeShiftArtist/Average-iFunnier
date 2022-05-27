@@ -2,17 +2,15 @@ import {
 	BitFieldResolvable,
 	Client as DiscordClient,
 	ClientOptions,
-	Collection,
 	Intents,
 	IntentsString,
 	MessageMentionOptions,
-	Team,
 	User,
 } from "discord.js";
 import { Utility } from "../utils/util";
 import Logger from "./Logger";
 
-import SlashCommandHandler from "./SlashCommandHandler";
+import SlashCommandHandler from "../Handlers/SlashCommandHandler";
 
 interface SupportServer {
 	inviteURL: string;
@@ -44,7 +42,7 @@ export interface ClientConfig extends ClientOptions {
 /**
  * Custom Discord Client
  */
-export class Client extends DiscordClient {
+export class Client<Ready extends boolean = boolean> extends DiscordClient<Ready> {
 	/**
 	 * The custom handler for slash commands
 	 */
@@ -53,7 +51,7 @@ export class Client extends DiscordClient {
 	/**
 	 * Utility class for reducing repeated code
 	 */
-	public readonly util: typeof Utility;
+	public readonly util: Utility;
 
 	/**
 	 * The Client's application Id for slash commands
@@ -81,10 +79,16 @@ export class Client extends DiscordClient {
 		Intents.FLAGS.GUILD_PRESENCES,
 	];
 
+	/**
+	 * The custom logger
+	 */
 	public readonly logger: Logger;
 
 	protected _debug: boolean;
 
+	/**
+	 * Invite url for the support server
+	 */
 	public supportServer: SupportServer | null;
 
 	constructor(ClientConfig: ClientConfig) {
@@ -108,7 +112,7 @@ export class Client extends DiscordClient {
 
 		this.supportServer = ClientConfig?.supportServer ?? null;
 
-		this.util = Utility;
+		this.util = new Utility(this);
 
 		this.commandHandler = new SlashCommandHandler(this);
 
@@ -117,13 +121,14 @@ export class Client extends DiscordClient {
 		this._debug = !!ClientConfig.debug;
 		if (this._debug) this.logger.enable();
 
-		this.on("ready", async () => {
+		this.on("ready", async (client) => {
+			this.logger.info(`Client ready on ${client.user.tag} (${client.user.id})`);
 			await this.commandHandler.loadAllCommands();
 			this.commandHandler.REST.setToken(this.token!);
 			await this.commandHandler.registerGuildsCommands();
+			await this.commandHandler.registerGlobalCommands();
 			await this.commandHandler.handleCommands();
-			await this.commandHandler.registerGuildsCommands();
-			this.logger.debug("Commands registered and listening!");
+			this.logger.info("Commands registered and listening!");
 		});
 	}
 
@@ -141,31 +146,30 @@ export class Client extends DiscordClient {
 	}
 
 	/**
-	 * A logger that logs items to the console if {@link debug} is true
-	 * @param args Args to pass into Logger.debug
-	 */
-	public log(...args: unknown[]): void {
-		if (this.debug) this.logger.debug(...args);
-	}
-
-	/**
-	 * Returns the Team object for this client if it exists, otherwise returns null
-	 */
-	public get team(): Team | null {
-		const teamMembers = this.application?.owner;
-		if (teamMembers instanceof Team) return teamMembers;
-		else return null;
-	}
-
-	/**
 	 * Gets the primary owner of this bot\
 	 * If a Team owns this bot, it will return the User object of the Team owner
 	 */
-	public get owner(): User | null {
-		const owner = this.application?.owner;
-		if (owner instanceof Team) {
-			return owner.owner?.user ?? null;
-		} else return owner ?? null;
+	public async owner(): Promise<User | null> {
+		return await this.users.fetch(process.env.OWNER_ID!);
+	}
+
+	/**
+	 * Checks if a user is the owner of this bot.
+	 * @param user User to check
+	 * @returns boolean
+	 */
+	public async isOwner(user: User | string | number) {
+		let id: string;
+		if (user instanceof User) {
+			id = user.id;
+		} else if (typeof user === "number") {
+			id = user.toString();
+		} else if (typeof user === "string") {
+			id = user;
+		} else {
+			return null;
+		}
+		return id === process.env.OWNER_ID;
 	}
 
 	/**
