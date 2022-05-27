@@ -1,7 +1,6 @@
 import { ISettingsParam, ILogObject, Logger as TSLog } from "tslog";
-
 import fs from "node:fs";
-import { pretty } from "../utils/methods";
+import Util from "../utils/util";
 import Emojis from "./Emojis";
 
 type Transporter = (logObject: ILogObject) => void;
@@ -28,7 +27,7 @@ function saveToFile(logObject: ILogObject) {
 	// The message itself
 	let message = data.message;
 	if (data.arguments.length) {
-		message += ` ${pretty(data.arguments)}`;
+		message += ` ${Util.pretty(data.arguments)}`;
 	}
 	fs.appendFileSync(".log", `${logInfo} ${message}\n`);
 }
