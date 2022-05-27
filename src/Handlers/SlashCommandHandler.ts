@@ -1,11 +1,12 @@
 import { REST } from "@discordjs/rest";
-import { RESTPostAPIApplicationCommandsJSONBody, Routes } from "discord-api-types/v10";
+import { Routes } from "discord-api-types/v10";
 import path from "node:path";
-import type Client from "./Client";
+import type Client from "../Objects/Client";
 import fs from "node:fs";
-import { Collection } from "discord.js";
-import { Cooldown } from "../utils/util";
-import { Command } from "./Command";
+import { Collection, CommandInteraction, Interaction } from "discord.js";
+import { Cooldown } from "../utils/types";
+import Command from "@Command";
+import ClientError from "../Errors/ClientError";
 
 /**
  * The path to the Commands folder
@@ -40,16 +41,18 @@ export class SlashCommandHandler {
 		if (this.client.token) this.REST.setToken(this.client.token);
 	}
 
-	get commandsArray() {
+	get allCommands() {
 		return Array.from(this.commands.values());
 	}
 
 	get guildCommands() {
-		return this.commandsArray.filter((cmd) => cmd.supportOnly);
+		return this.allCommands.filter(
+			(cmd) => cmd.supportOnly || cmd.devOnly || cmd.ownerOnly
+		);
 	}
 
 	get globalCommands() {
-		return this.commandsArray.filter((cmd) => !cmd.supportOnly);
+		return this.allCommands.filter((cmd) => !cmd.supportOnly);
 	}
 
 	/**
@@ -78,11 +81,13 @@ export class SlashCommandHandler {
 			const commandFiles = fs
 				.readdirSync(COMMANDS_PATH)
 				.filter((file) => file.endsWith(".ts"));
-			for (const file of commandFiles) {
-				this.loadCommand(file);
+			//this.client.logger.debug("commandFiles", commandFiles);
+			for (let file of commandFiles) {
+				//this.client.logger.debug("filename", file);
+				await this.loadCommand(file);
 			}
 		} catch (error) {
-			this.client.log("Error in loading all commands", error);
+			this.client.logger.error("Error in loading all commands", error);
 		}
 	}
 
@@ -110,20 +115,21 @@ export class SlashCommandHandler {
 	 */
 	async loadCommand(name: string) {
 		try {
-			const command: Command = (await import(`${COMMANDS_PATH}/${name}`)).default;
-
-			this.client.log("Command loaded", command.slash);
+			let cmd: new () => Command = require(`${COMMANDS_PATH}\\${name}`).default;
+			const command = new cmd();
+			//this.client.logger.info("Command loaded", command.name);
 			this.commands.set(command.name, command);
-			this.client.log(`Command set ${command.name}`);
+
 			return command;
 		} catch (error) {
-			this.client.log("Error loading command in loadCommand");
+			this.client.logger.error(`Error loading command (${name}) in loadCommand`);
 			if (!(error instanceof Error)) throw error;
 
 			if (error.message.startsWith("Cannot find module")) {
-				throw new Error(
+				throw error;
+				/* throw new Error(
 					`Command ${name} does not exist, ${COMMANDS_PATH}/${name}`
-				);
+				); */
 			} else throw error;
 		}
 	}
@@ -150,9 +156,9 @@ export class SlashCommandHandler {
 	 */
 	async registerGuildsCommands() {
 		if (this.client.supportServer) {
-			const guildCommands = this.guildCommands.map((cmd) => cmd.toJSON());
-			this.client.log(guildCommands);
-			const resp = await this.REST.put(
+			const guildCommands = this.allCommands.map((cmd) => cmd.toJSON());
+			//this.client.logger.info("Guild commands", guildCommands);
+			await this.REST.put(
 				Routes.applicationGuildCommands(
 					this.client.clientId,
 					this.client.supportServer.guildId
@@ -161,8 +167,8 @@ export class SlashCommandHandler {
 					body: guildCommands,
 				}
 			);
-			this.client.log(resp);
-			this.client.log("Successfully registered guild commands");
+
+			this.client.logger.info("Successfully registered guild commands");
 		} else
 			this.client.logger.warn(
 				"Couldn't register guilds commands because the server is not set'"
@@ -175,6 +181,7 @@ export class SlashCommandHandler {
 		await this.REST.put(Routes.applicationCommands(this.client.clientId), {
 			body: globalCommands,
 		});
+		this.client.logger.info("Successfully registered global commands");
 	}
 
 	/**
@@ -182,13 +189,52 @@ export class SlashCommandHandler {
 	 */
 	async handleCommands() {
 		this.client.on("interactionCreate", async (interaction) => {
-			if (interaction.isCommand()) {
-				return this.get(interaction.commandName)!.execute(
-					interaction,
-					this.client
+			//this.client.logger.debug("interaction created");
+			if (!interaction.isCommand()) return;
+
+			const command = this.get(interaction.commandName);
+			if (!command) {
+				this.client.logger.error(
+					`${interaction.commandName} does not exist. but was called`,
+					interaction
 				);
+				return;
 			}
+			if (
+				command.ownerOnly &&
+				interaction.user.id !== (await this.client.owner())?.id
+			) {
+				this.client.logger.debug(`${await this.client.owner()}`);
+				const embed = this.client.util.errorEmbed(
+					new ClientError(this.client, { interaction }).message
+				);
+				await interaction.reply({
+					embeds: [embed],
+				});
+				return;
+			}
+			await command.execute(this.client, interaction);
 		});
+	}
+
+	async checkPermissions(interaction: CommandInteraction, command: Command) {
+		if (
+			command.ownerOnly &&
+			interaction.user.id !== (await this.client.owner())?.id
+		) {
+			const error = new ClientError(this.client, {
+				interaction,
+				message: "Owner Only Command",
+			});
+			const embed = this.client.util
+				.errorEmbed(error.message)
+				.setDescription("You must be the owner of this bot to use this command");
+
+			await interaction.reply({
+				embeds: [embed],
+			});
+			return false;
+		}
 	}
 }
 
