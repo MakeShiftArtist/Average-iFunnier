@@ -1,0 +1,33 @@
+# Changelog
+> All notable changes to this project will be documented in this file.
+> This Changelog adheres to the [Semantic Versioning]("https://semver.org/")
+
+{{#each releases}}
+  {{#if href}}
+    ## [{{title}}]({{href}}) - {{isoDate}}
+  {{else}}
+    ## {{title}} - {{isoDate}}
+  {{/if}}
+
+  {{! New features. Minor release }}
+  {{#commit-list commits heading='### Features' message='[Ff]eat:' exclude='[Ff]ix:|[Bb]reak:|[Dd]oc:'}}
+  * {{subject}} @{{author}} ([`{{shorthash}}`]({{href}}))
+  {{/commit-list}}
+
+  {{! Bug fixes. Patch release }}
+  {{#commit-list commits heading='### Fixes' message='[Ff]ix:' exclude='[Bb]reak:|[Ff]eat:|[Dd]oc:'}}
+  * {{subject}} @{{author}} ([`{{shorthash}}`]({{href}}))
+  {{/commit-list}}
+
+  {{! Breaking changes. Major release }}
+  {{#commit-list commits heading='### Breaking changes' message='[Bb]reak:' exclude='[Ff]ix:|[Ff]eat:|[Dd]oc:'}}
+  * {{subject}} @{{author}} ([`{{shorthash}}`]({{href}}))
+  {{/commit-list}}
+
+  {{! Changes to the documentation: Patch release }}
+  {{#commit-list commits heading='### Documentation' message='[Dd]oc:' exclude='[Ff]ix:|[Bb]reak:|[Ff]eat:'}}
+  * {{subject}} @{{author}} ([`{{shorthash}}`]({{href}}))
+  {{/commit-list}}
+
+
+{{/each}}
