@@ -63,6 +63,7 @@ export class Utility {
 
 	/**
 	 * Shortcut for `new MessageEmbed()`
+	 * @param title Title of the embed
 	 * @returns MessageEmbed object
 	 */
 	public static embed(title?: string): MessageEmbed {
@@ -150,6 +151,10 @@ export class Utility {
 		return Utility.duration;
 	}
 
+	/**
+	 * Gets the uptime duration in a clean string format
+	 * @param client The Discord client
+	 */
 	public static uptime(client: Client): string {
 		if (!client.isReady()) {
 			throw new Error("Can't get uptime when Client is not ready");
@@ -169,6 +174,13 @@ export class Utility {
 			uptime += `${duration.seconds} seconds `;
 		}
 		return uptime.trim();
+	}
+
+	/**
+	 * Gets the uptime duration in a clean string format
+	 */
+	public get uptime() {
+		return Utility.uptime;
 	}
 }
 
