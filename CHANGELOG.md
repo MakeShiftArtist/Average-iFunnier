@@ -2,6 +2,19 @@
 > All notable changes to this project will be documented in this file.
 > This Changelog adheres to the [Semantic Versioning]("https://semver.org/")
 
+## [v2.0.4](https://github.com/MakeShiftArtist/ifunny-discord-bot/compare/v2.0.3...v2.0.4) - 2022-05-27
+
+
+### Fixes
+
+*  Remove declarationDir @MakeShiftArtist ([`1725339`](https://github.com/MakeShiftArtist/ifunny-discord-bot/commit/1725339dc034b74d42599c821a90b1f95de10c69))
+
+
+### Documentation
+
+*  Updated CHANGELOG.md @MakeShiftArtist ([`4d29369`](https://github.com/MakeShiftArtist/ifunny-discord-bot/commit/4d29369c47fcfa38a2476ae1d2a4423353a0bdcf))
+
+
 ## [v2.0.3](https://github.com/MakeShiftArtist/ifunny-discord-bot/compare/v2.0.2...v2.0.3) - 2022-05-27
 
 
