@@ -2,6 +2,19 @@
 > All notable changes to this project will be documented in this file.
 > This Changelog adheres to the [Semantic Versioning]("https://semver.org/")
 
+## [v2.0.3](https://github.com/MakeShiftArtist/ifunny-discord-bot/compare/v2.0.2...v2.0.3) - 2022-05-27
+
+
+### Fixes
+
+*  Added @discordjs/rest to dependencies @MakeShiftArtist ([`1f14088`](https://github.com/MakeShiftArtist/ifunny-discord-bot/commit/1f1408808a00b2634693530b4726c281741d0043))
+
+
+### Documentation
+
+*  Updated CHANGELOG.md @MakeShiftArtist ([`2015186`](https://github.com/MakeShiftArtist/ifunny-discord-bot/commit/2015186dedb08999b0b7fdd6dfefc162d124dd65))
+
+
 ## [v2.0.2](https://github.com/MakeShiftArtist/ifunny-discord-bot/compare/v2.0.1...v2.0.2) - 2022-05-27
 
 ### Features
