@@ -13,4 +13,7 @@ const config = {
 
 const client = new Client(config);
 
+export default client;
+client.debug = true;
+
 client.login(process.env.DISCORD_TOKEN);
