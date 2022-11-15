@@ -1,0 +1,19 @@
+{
+	"compileOnSave": true,
+	"compilerOptions": {
+		"target": "ES2022",
+		"module": "CommonJS",
+		"lib": ["es2022"],
+		"strict": true,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"outDir": "dist",
+		"declaration": true,
+		"declarationDir": "types",
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"stripInternal": true,
+		"noImplicitOverride": true
+	},
+	"include": ["src/"]
+}
