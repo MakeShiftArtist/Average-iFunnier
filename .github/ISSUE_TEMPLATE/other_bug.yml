@@ -1,0 +1,62 @@
+name: Bug Report
+description: Use this form to report a bug with our software
+title: "[Bug]: "
+labels: ["bug", "triage"]
+assignees:
+- username1
+- username2
+body:
+- type: markdown
+  attributes:
+    value: |
+      Thanks for taking the time to report a bug with our software! Please fill out the information below so we can investigate the issue.
+- type: input
+  id: contact
+  attributes:
+    label: Contact Details
+    description: How can we get in touch with you if we need more info?
+    placeholder: ex. email@example.com
+  validations:
+    required: false
+- type: textarea
+  id: description
+  attributes:
+    label: Bug Description
+    description: Please describe the bug you encountered.
+    placeholder: "I found a bug in the software when I tried to do X."
+  validations:
+    required: true
+- type: dropdown
+  id: version
+  attributes:
+    label: Software Version
+    description: What version of our software are you running?
+    options:
+      - latest (Default)
+      - v1.2.3
+  validations:
+    required: true
+- type: markdown
+  attributes:
+    value: |
+      ## PostgreSQL Container
+
+      We recommend using our official PostgreSQL container to test your bug report.
+
+      ```
+      docker run --name my-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+      ```
+- type: textarea
+  id: postgresql_commands
+  attributes:
+    label: PostgreSQL Commands
+    description: Please provide any SQL commands that may be helpful in debugging the issue.
+    render: sql
+- type: checkboxes
+  id: terms
+  attributes:
+    label: Code of Conduct
+    description: By submitting this issue, you agree to follow our Code of Conduct.
+    options:
+      - label: I agree to follow this project's Code of Conduct
+        required: true
