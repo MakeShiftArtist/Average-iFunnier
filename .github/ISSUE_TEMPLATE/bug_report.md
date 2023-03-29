@@ -44,3 +44,24 @@ additional-information:
         required: true
       - name: "Additional Information"
         description: "Please provide any additional information that you think might be helpful to understand the bug."
+    required: true
+  - name: "Severity"
+    description: "Please select the severity of the bug."
+    input-type: dropdown
+    options:
+      - "Critical"
+      - "High"
+      - "Medium"
+      - "Low"
+      - "Cosmetic"
+  - name: "Reproducibility"
+    description: "Please select how often you are able to reproduce the bug."
+    input-type: dropdown
+    options:
+      - "Always"
+      - "Intermittent"
+      - "Rarely"
+  - name: "Additional Notes"
+    description: "Please provide any additional notes or comments about the bug that you think might be helpful."
+    input-type: textarea
+    required: false
