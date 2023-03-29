@@ -1,61 +1,93 @@
 name: Bug Report
 
-description: "Create a report to help us improve"
+description: Create a report to help us improve
 
-labels: 
+labels:
   - bug
 
-assignees: 
-
-title: "[BUG]"
+assignees: []
 
 body:
-  required: true
-  description: "Please provide a clear and concise description of the bug."
+  - type: markdown
+    attributes:
+      value: |
+        Please provide a clear and concise description of the bug.
 
-steps:
-  - name: "Steps to Reproduce"
-    description: "Please provide detailed steps to reproduce the bug."
-    required: true
-  - name: "Expected Behavior"
-    description: "Please describe what you expected to happen."
-    required: true
-  - name: "Actual Behavior"
-    description: "Please describe what actually happened."
-    required: true
-  - name: "Screenshots"
-    description: "Please attach any relevant screenshots or videos that may help to understand the bug."
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Please provide a detailed description of the bug.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction_steps
+    attributes:
+      label: Steps to Reproduce
+      description: Please provide detailed steps to reproduce the bug.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected Behavior
+      description: Please describe what you expected to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: Actual Behavior
+      description: Please describe what actually happened.
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Please attach any relevant screenshots or videos that may help to understand the bug.
+
+additional_assignees:
+  - type: input
+    id: additional_assignees
+    attributes:
+      label: Additional Assignees
+      description: Add any additional assignees to this issue.
+      placeholder: Separate with commas
 
 additional_information:
-  - name: "Environment"
-    description: "Please provide the following information:"
-    fields:
-      - name: "Operating System"
-        description: "Please specify the name and version of your operating system."
-        required: true
-      - name: "Browser"
-        description: "Please specify the name and version of the browser you were using."
-        required: true
-      - name: "Additional Information"
-        description: "Please provide any additional information that you think might be helpful to understand the bug."
-    required: true
-  - name: "Severity"
-    description: "Please select the severity of the bug."
-    input_type: dropdown
-    options:
-      - "Critical"
-      - "High"
-      - "Medium"
-      - "Low"
-      - "Cosmetic"
-  - name: "Reproducibility"
-    description: "Please select how often you are able to reproduce the bug."
-    input_type: dropdown
-    options:
-      - "Always"
-      - "Intermittent"
-      - "Rarely"
-  - name: "Additional Notes"
-    description: "Please provide any additional notes or comments about the bug that you think might be helpful."
-    input_type: textarea
-    required: false
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: Please select the severity of the bug.
+      options:
+        - Critical
+        - High
+        - Medium
+        - Low
+        - Cosmetic
+    validations:
+      required: true
+
+  - type: dropdown
+    id: reproducibility
+    attributes:
+      label: Reproducibility
+      description: Please select how often you are able to reproduce the bug.
+      options:
+        - Always
+        - Intermittent
+        - Rarely
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: Additional Notes
+      description: Please provide any additional notes or comments about the bug that you think might be helpful.
