@@ -1,23 +1,17 @@
----
-name: Bug report
-about: Create a report to help us improve
-title: "[BUG]"
-labels: bug
-assignees: ''
-
----
-
 name: Bug Report
 
-about: Create a report to help us improve
+description: "Create a report to help us improve"
 
-labels: bug
+labels: 
+  - bug
 
----
+assignees: 
 
 title: "[BUG]"
 
-description: "Please provide a clear and concise description of the bug."
+body:
+  required: true
+  description: "Please provide a clear and concise description of the bug."
 
 steps:
   - name: "Steps to Reproduce"
@@ -32,7 +26,7 @@ steps:
   - name: "Screenshots"
     description: "Please attach any relevant screenshots or videos that may help to understand the bug."
 
-additional-information:
+additional_information:
   - name: "Environment"
     description: "Please provide the following information:"
     fields:
@@ -47,7 +41,7 @@ additional-information:
     required: true
   - name: "Severity"
     description: "Please select the severity of the bug."
-    input-type: dropdown
+    input_type: dropdown
     options:
       - "Critical"
       - "High"
@@ -56,12 +50,12 @@ additional-information:
       - "Cosmetic"
   - name: "Reproducibility"
     description: "Please select how often you are able to reproduce the bug."
-    input-type: dropdown
+    input_type: dropdown
     options:
       - "Always"
       - "Intermittent"
       - "Rarely"
   - name: "Additional Notes"
     description: "Please provide any additional notes or comments about the bug that you think might be helpful."
-    input-type: textarea
+    input_type: textarea
     required: false
