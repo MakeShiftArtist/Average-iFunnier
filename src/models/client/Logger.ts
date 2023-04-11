@@ -1,4 +1,3 @@
-import { info } from "console";
 import winston from "winston";
 
 const CONSOLE_FORMAT = winston.format.combine(

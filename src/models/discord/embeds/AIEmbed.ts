@@ -1,5 +1,5 @@
 import { EmbedBuilder } from "discord.js";
-import AIClient from "../../client/AIClient";
+import type AIClient from "../../client/AIClient";
 
 /**
  * AIEmbed class for embeds created by the bot

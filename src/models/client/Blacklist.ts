@@ -1,6 +1,6 @@
-import crypto from "crypto";
 import { Collection, User as DiscordUser } from "discord.js";
 import { User as iFunnyUser } from "ifunny.ts";
+import crypto from "crypto";
 
 /**
  * Info about a blacklisted user

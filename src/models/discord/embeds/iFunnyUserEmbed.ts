@@ -1,8 +1,8 @@
-import { BanSmall } from "ifunny.ts";
-import { User } from "ifunny.ts";
-import AIEmbed from "./AIEmbed";
 import { time } from "discord.js";
-import AIClient from "../../client/AIClient";
+import AIEmbed from "./AIEmbed";
+import type { BanSmall } from "ifunny.ts";
+import type { User } from "ifunny.ts";
+import type AIClient from "../../client/AIClient";
 
 export const DEFAULT_PFP = "https://i.ibb.co/6gTSDGC/Default-PFP.png";
 
@@ -81,7 +81,7 @@ export default class iFunnyUserEmbed extends AIEmbed {
  * @returns A string representation of the ban
  * @example
  * banString({
- * 	type: "ban",	
+ * 	type: "ban",
  * 	id: "123456789",
  * 	expires_in: "1d",
  * }) => "Type: \`ban\`\nID: 123456789\nExpires: 1 day ago"

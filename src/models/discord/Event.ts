@@ -1,5 +1,5 @@
-import AIClient from "../client/AIClient";
 import { ClientEvents } from "discord.js";
+import type AIClient from "../client/AIClient";
 
 export type TEventCallback<K extends keyof ClientEvents> = (
 	bot: AIClient,

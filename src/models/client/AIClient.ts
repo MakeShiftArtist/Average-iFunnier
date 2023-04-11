@@ -1,16 +1,16 @@
 import { Client as Discord, Collection, IntentsBitField, Interaction } from "discord.js";
 import { Client as iFunny } from "ifunny.ts";
 import { EventEmitter as EventEmitter3 } from "eventemitter3";
-import AIError from "../errors/AIError";
-import Logger from "./Logger";
-import ErrorEmbed from "../discord/embeds/ErrorEmbed";
-import Blacklist from "./Blacklist";
 import { readdir } from "fs/promises";
-import Command from "../discord/Command";
-import EmbedHandler from "../discord/EmbedHandler";
-import DiscordEvent from "../discord/Event";
 import { REST, Routes } from "discord.js";
-import winston from "winston";
+import AIError from "../errors/AIError";
+import Blacklist from "./Blacklist";
+import Command from "../discord/Command";
+import DiscordEvent from "../discord/Event";
+import EmbedHandler from "../discord/EmbedHandler";
+import ErrorEmbed from "../discord/embeds/ErrorEmbed";
+import Logger from "./Logger";
+import type winston from "winston";
 
 export interface AIClientConfig {
 	discord_token: string;

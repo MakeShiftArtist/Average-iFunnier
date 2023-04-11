@@ -1,6 +1,6 @@
-import AIClient from "../../client/AIClient";
-import AIError from "../../errors/AIError";
 import AIEmbed from "./AIEmbed";
+import type AIClient from "../../client/AIClient";
+import type AIError from "../../errors/AIError";
 
 /**
  * Represents an Error embed to send to discord

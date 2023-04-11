@@ -3,8 +3,8 @@ import {
 	ChatInputCommandInteraction,
 	SlashCommandBuilder,
 } from "discord.js";
-import AIClient from "../client/AIClient";
 import AIError from "../errors/AIError";
+import type AIClient from "../client/AIClient";
 
 /**
  * Callback for the execute function
@@ -66,7 +66,8 @@ export default class Command extends SlashCommandBuilder {
 		this.#category = config.category ?? "general";
 		this.setName(config.name).setDescription(config.description);
 		this.#execute_callback = execute;
-		this.#autocomplete_callback = autocomplete ??= (_bot, interaction) => interaction.respond([]);
+		this.#autocomplete_callback = autocomplete ??= (_bot, interaction) =>
+			interaction.respond([]);
 	}
 
 	/**
