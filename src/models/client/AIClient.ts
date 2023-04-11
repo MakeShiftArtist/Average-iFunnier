@@ -64,7 +64,7 @@ export default class AIClient extends EventEmitter3<AIClientEvents> {
 			if (interaction.isRepliable()) {
 				interaction.reply({
 					ephemeral: true,
-					embeds: [new ErrorEmbed(error)],
+					embeds: [new ErrorEmbed(this, error)],
 				});
 			}
 
@@ -185,8 +185,8 @@ export default class AIClient extends EventEmitter3<AIClientEvents> {
 		return this;
 	}
 
-	async register_commands(): Promise<this> {
-		if (!this.discord.isReady()) {
+	public async register_commands(): Promise<this> {
+		if (!this.discord.isReady() || !this.discord.application) {
 			throw new AIError(
 				"invalid_client",
 				"Client attempted to register commands before being ready"
@@ -199,7 +199,7 @@ export default class AIClient extends EventEmitter3<AIClientEvents> {
 
 		this.logger.info("Registering commands via REST...");
 
-		await rest.put(Routes.applicationCommands(this.discord.user.id), {
+		await rest.put(Routes.applicationCommands(this.discord.application.id), {
 			body: this.commands.clone().map((command) => command.toJSON()),
 		});
 

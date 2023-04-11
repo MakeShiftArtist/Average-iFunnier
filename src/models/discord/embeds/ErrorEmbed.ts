@@ -1,3 +1,4 @@
+import AIClient from "../../client/AIClient";
 import AIError from "../../errors/AIError";
 import AIEmbed from "./AIEmbed";
 
@@ -9,8 +10,8 @@ export default class ErrorEmbed extends AIEmbed {
 	/**
 	 * @param error The error to
 	 */
-	constructor(error: AIError) {
-		super({});
+	constructor(client: AIClient, error: AIError) {
+		super(client, {});
 		this.setColor("Red").setTitle(error.code).setDescription(error.message);
 	}
 }

@@ -2,25 +2,44 @@ import { BanSmall } from "ifunny.ts";
 import { User } from "ifunny.ts";
 import AIEmbed from "./AIEmbed";
 import { time } from "discord.js";
+import AIClient from "../../client/AIClient";
+
+export const DEFAULT_PFP = "https://i.ibb.co/6gTSDGC/Default-PFP.png";
 
 export default class iFunnyUserEmbed extends AIEmbed {
 	readonly #user: User;
-	constructor(user: User) {
-		super({});
+	/**
+	 * @param client The bot client that created this embed
+	 * @param user The user to create embed with
+	 */
+	constructor(client: AIClient, user: User) {
+		super(client, {});
 		this.#user = user;
 		this.setAuthor({
 			name: user.nick,
-			iconURL: user.profile_photo?.url,
+			iconURL: user.profile_photo?.url ?? DEFAULT_PFP,
 			url: user.link,
 		});
 		this.setFooter({
 			text: user.id,
 		});
-		this.setThumbnail(user.profile_photo?.url ?? null);
+		this.setThumbnail(user.meme_experience.badge_url);
 		if (user.cover_url) this.setImage(user.cover_url);
-		this.setColor(user.nick_color ? `#${user.nick_color}` : "#FFFFFF");
+		try {
+			this.setColor(
+				user.nick_color
+					? `#${user.nick_color}`
+					: user.profile_photo
+					? `#${user.profile_photo.bg_color}`
+					: user.cover_color
+					? `#${user.cover_color}`
+					: "#FFFFFF"
+			);
+		} catch (error) {
+			console.log(user.toJSON());
+		}
 
-		this.setDescription(user.about);
+		if (user.about) this.setDescription(user.about);
 		const stats =
 			`Total Posts: \`${user.total_posts}\`\n` +
 			`Original: \`${user.total_original_posts}\`\n` +
@@ -30,6 +49,12 @@ export default class iFunnyUserEmbed extends AIEmbed {
 			`Subscriptions: \`${user.total_subscriptions}\``;
 
 		this.addFields([
+			{
+				name: user.meme_experience.rank,
+				value:
+					`Days: \`${user.meme_experience.days}\`\n` +
+					`Next Milestone: \`${user.meme_experience.next_milestone}\` (\`${user.meme_experience.days_until_next_milestone}\` days left)`,
+			},
 			{
 				name: "Stats",
 				value: stats,
@@ -50,6 +75,17 @@ export default class iFunnyUserEmbed extends AIEmbed {
 	}
 }
 
+/**
+ * Converts a ban to a string
+ * @param ban The ban to convert
+ * @returns A string representation of the ban
+ * @example
+ * banString({
+ * 	type: "ban",	
+ * 	id: "123456789",
+ * 	expires_in: "1d",
+ * }) => "Type: \`ban\`\nID: 123456789\nExpires: 1 day ago"
+ */
 function banString(ban: BanSmall): string {
 	return `Type: \`${ban.type}\`\nID: ${ban.id}\nExpires: ${time(ban.expires_in, "R")}`;
 }

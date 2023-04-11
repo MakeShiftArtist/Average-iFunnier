@@ -1,6 +1,5 @@
-import AIEmbed from "../../../models/discord/embeds/AIEmbed";
+import type AIEmbed from "../../../models/discord/embeds/AIEmbed";
 import Command from "../../../models/discord/Command";
-import iFunnyUserEmbed from "../../../models/discord/embeds/iFunnyUserEmbed";
 import AIError from "../../../models/errors/AIError";
 
 export default new Command(
@@ -18,13 +17,14 @@ export default new Command(
 
 		if (!user) {
 			embed = new bot.embeds.error(
+				bot,
 				new AIError(
 					"invalid_user",
 					`User with ${queryType} \`${query}\` not found.`
 				)
 			);
 		} else {
-			embed = new bot.embeds.iFunnyUser(user);
+			embed = new bot.embeds.iFunnyUser(bot, user);
 		}
 
 		interaction.reply({
