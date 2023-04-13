@@ -22,7 +22,7 @@
 		"discord.js": "^14.9.0",
 		"dotenv": "^16.0.3",
 		"eventemitter3": "^4.0.7",
-		"ifunny.ts": "^0.5.0",
+		"ifunny.ts": "^0.6.0",
 		"mysql2": "^2.3.3",
 		"typeorm": "^0.3.10",
 		"winston": "^3.8.2"
