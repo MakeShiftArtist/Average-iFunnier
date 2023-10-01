@@ -1,0 +1,13 @@
+# NPM
+node_modules/
+
+# Documentation
+docs/
+
+# Log files
+*.log
+
+# Test file for experimenting with the bot
+test.ts
+LICENSE
+*.md
