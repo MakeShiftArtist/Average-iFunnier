@@ -1,0 +1,13 @@
+{
+	"watch": ["src"],
+	"ext": "ts",
+	"ignore": ["src/**/*.spec.ts"],
+	"exec": "ts-node -r dotenv/config ./src/index.ts",
+	"env": {
+		"NODE_ENV": "dev",
+		"PORT": "3000"
+	},
+	"execMap": {
+		"ts": "node --inspect=0.0.0.0:9229 -r tsconfig-paths/register -r ts-node/register"
+	}
+}
