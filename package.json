@@ -5,8 +5,11 @@
 	"main": "index.ts",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "npx nodemon src/index.ts",
-		"start": "npx ts-node ./src/index.ts"
+		"dev": "npx nodemon src/index.ts --config nodemon.json",
+		"build": "docker build -t average-ifunnier .",
+		"start": "docker run -d --name average-ifunnier average-ifunnier",
+		"stop": "docker stop average-ifunnier",
+		"restart": "docker start average-ifunnier"
 	},
 	"repository": {
 		"type": "git",
@@ -22,9 +25,9 @@
 		"discord.js": "^14.9.0",
 		"dotenv": "^16.0.3",
 		"eventemitter3": "^4.0.7",
-		"ifunny.ts": "^0.6.0",
+		"ifunny.ts": "^0.6.5",
 		"mysql2": "^2.3.3",
-		"typeorm": "^0.3.10",
+		"typeorm": "^0.3.14",
 		"winston": "^3.8.2"
 	},
 	"devDependencies": {
