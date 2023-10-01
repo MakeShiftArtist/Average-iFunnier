@@ -17,22 +17,22 @@ export default class iFunnyUserEmbed extends AIEmbed {
 		this.#user = user;
 		this.setAuthor({
 			name: user.nick,
-			iconURL: user.profile_photo?.url ?? DEFAULT_PFP,
+			iconURL: user.profilePhoto?.url ?? DEFAULT_PFP,
 			url: user.link,
 		});
 		this.setFooter({
 			text: user.id,
 		});
-		this.setThumbnail(user.meme_experience.badge_url);
-		if (user.cover_url) this.setImage(user.cover_url);
+		this.setThumbnail(user.memeExperience.badgeUrl);
+		if (user.coverUrl) this.setImage(user.coverUrl);
 		try {
 			this.setColor(
-				user.nick_color
-					? `#${user.nick_color}`
-					: user.profile_photo
-					? `#${user.profile_photo.bg_color}`
-					: user.cover_color
-					? `#${user.cover_color}`
+				user.nickColor
+					? `#${user.nickColor}`
+					: user.profilePhoto
+					? `#${user.profilePhoto.bg_color}`
+					: user.coverColor
+					? `#${user.coverColor}`
 					: "#FFFFFF"
 			);
 		} catch (error) {
@@ -41,19 +41,19 @@ export default class iFunnyUserEmbed extends AIEmbed {
 
 		if (user.about) this.setDescription(user.about);
 		const stats =
-			`Total Posts: \`${user.total_posts}\`\n` +
-			`Original: \`${user.total_original_posts}\`\n` +
-			`Features: \`${user.total_features}\`\n` +
-			`Total Smiles: \`${user.total_smiles}\`\n` +
-			`Subscribers: \`${user.total_subscribers}\`\n` +
-			`Subscriptions: \`${user.total_subscriptions}\``;
+			`Total Posts: \`${user.totalPosts}\`\n` +
+			`Original: \`${user.totalOriginalPosts}\`\n` +
+			`Features: \`${user.totalFeatures}\`\n` +
+			`Total Smiles: \`${user.totalSmiles}\`\n` +
+			`Subscribers: \`${user.totalSubscribers}\`\n` +
+			`Subscriptions: \`${user.totalSubscriptions}\``;
 
 		this.addFields([
 			{
-				name: user.meme_experience.rank,
+				name: user.memeExperience.rank,
 				value:
-					`Days: \`${user.meme_experience.days}\`\n` +
-					`Next Milestone: \`${user.meme_experience.next_milestone}\` (\`${user.meme_experience.days_until_next_milestone}\` days left)`,
+					`Days: \`${user.memeExperience.days}\`\n` +
+					`Next Milestone: \`${user.memeExperience.nextMilestone}\` (\`${user.memeExperience.daysUntilNextMilestone}\` days left)`,
 			},
 			{
 				name: "Stats",
@@ -87,5 +87,5 @@ export default class iFunnyUserEmbed extends AIEmbed {
  * }) => "Type: \`ban\`\nID: 123456789\nExpires: 1 day ago"
  */
 function banString(ban: BanSmall): string {
-	return `Type: \`${ban.type}\`\nID: ${ban.id}\nExpires: ${time(ban.expires_in, "R")}`;
+	return `Type: \`${ban.type}\`\nID: ${ban.id}\nExpires: ${time(ban.expiresIn, "R")}`;
 }

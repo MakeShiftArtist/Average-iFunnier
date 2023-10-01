@@ -10,9 +10,9 @@ export default class iFunnyContentEmbed extends AIEmbed {
 		this.#content = content;
 
 		this.setImage(content.thumbnail.x640_url)
-			.setTitle(content.fixed_title)
+			.setTitle(content.fixedTitle)
 			.setFooter({ text: "Created at" })
-			.setTimestamp(content.created_at);
+			.setTimestamp(content.createdAt);
 
 		this.setAuthor({
 			name: content.author?.nick ?? "Unregistered User",
