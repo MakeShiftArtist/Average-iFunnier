@@ -31,6 +31,7 @@ export interface ICommandConfig {
 export enum ECommandCategory {
 	GENERAL = "general",
 	IFUNNY = "ifunny",
+	INFO = "info",
 }
 
 export type TCommandCategory = `${ECommandCategory}`;
