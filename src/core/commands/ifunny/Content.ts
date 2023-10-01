@@ -22,12 +22,12 @@ export default new Command(
 
 		let embed: AIEmbed;
 		if (!content) {
-			embed = new bot.embeds.error(
+			embed = new bot.embeds.Error(
 				bot,
 				new AIError("invalid_content", `\`${query}\` not found.`)
 			);
 		} else {
-			embed = new bot.embeds.iFunnyContent(bot, content);
+			embed = new bot.embeds.iFunny.Content(bot, content);
 		}
 
 		await interaction.reply({ embeds: [embed] });

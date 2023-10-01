@@ -3,6 +3,7 @@ import AIEmbed from "./embeds/AIEmbed";
 import ErrorEmbed from "./embeds/ErrorEmbed";
 import iFunnyContentEmbed from "./embeds/iFunnyContentEmbed";
 import iFunnyUserEmbed from "./embeds/iFunnyUserEmbed";
+import AboutEmbed from "./embeds/AboutEmbed";
 
 /**
  * A utility class for building and handling Discord embeds
@@ -19,19 +20,41 @@ export default class EmbedHandler {
 	 */
 	static default = EmbedHandler.embed;
 	/**
-	 * Creates an embed for errors
+	 * Default error embed
 	 */
-	static error = ErrorEmbed;
+	static Error = ErrorEmbed;
+
 	/**
-	 * Creates an embed for iFunny Users
+	 * Namespace for iFunny-related embeds
 	 */
-	static iFunnyUser = iFunnyUserEmbed;
+	static iFunny = {
+		/**
+		 * Creates an embed for iFunny Users
+		 */
+		User: iFunnyUserEmbed,
+		/**
+		 * Creates an embed for iFunny Content
+		 */
+		Content: iFunnyContentEmbed,
+	};
+
 	/**
-	 * Creates an embed for iFunny Content
+	 * Namespace for general embeds
 	 */
-	static iFunnyContent = iFunnyContentEmbed;
+	static General = {
+		/**
+		 * Creates an embed for the About page command
+		 */
+		About: AboutEmbed,
+	};
+
 	/**
-	 * Shortcut to custom embeds with 0 default values
+	 * Namespace for custom embeds
 	 */
-	static custom = EmbedBuilder;
+	static Custom = {
+		/**
+		 * Shortcut to custom embeds with 0 default values
+		 */
+		create: EmbedBuilder,
+	};
 }

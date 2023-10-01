@@ -17,7 +17,7 @@ export default new Command(
 		let embed: AIEmbed = new bot.embeds.default(bot);
 
 		if (!user) {
-			embed = new bot.embeds.error(
+			embed = new bot.embeds.Error(
 				bot,
 				new AIError(
 					"invalid_user",
@@ -27,11 +27,11 @@ export default new Command(
 		} else {
 			embed
 				.setAuthor({
-					iconURL: user?.profile_photo?.url ?? DEFAULT_PFP,
+					iconURL: user?.profilePhoto?.url ?? DEFAULT_PFP,
 					name: user.nick,
 					url: user.link,
 				})
-				.setImage(user.profile_photo?.url ?? DEFAULT_PFP);
+				.setImage(user.profilePhoto?.url ?? DEFAULT_PFP);
 		}
 
 		await interaction.reply({

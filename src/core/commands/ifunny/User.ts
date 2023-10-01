@@ -16,7 +16,7 @@ export default new Command(
 		let embed: AIEmbed;
 
 		if (!user) {
-			embed = new bot.embeds.error(
+			embed = new bot.embeds.Error(
 				bot,
 				new AIError(
 					"invalid_user",
@@ -24,7 +24,7 @@ export default new Command(
 				)
 			);
 		} else {
-			embed = new bot.embeds.iFunnyUser(bot, user);
+			embed = new bot.embeds.iFunny.User(bot, user);
 		}
 
 		interaction.reply({
